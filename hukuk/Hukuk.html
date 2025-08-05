@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+ <meta charset="UTF-8">
+ <title>Güner Hukuk</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+ <link rel="stylesheet" href="style.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+ <style>
+ :root {
+ --clr-primary: #6f4e37;
+ --clr-accent : #cf9a22;
+ --clr-bg    : #f9f9f9;
+ --clr-text  : #333;
+ --shadow    : 0 2px 8px rgba(0,0,0,0.06);
+ }
+ *,*::before,*::after { box-sizing: border-box; margin:0; padding:0; }
+ body {
+ font-family: "Segoe UI", sans-serif;
+ background: var(--clr-bg);
+ color: var(--clr-text);
+ line-height: 1.6;
+ }
+ header {
+ background: var(--clr-primary);
+ color: #fff;
+ padding: 20px 40px;
+ display: flex;
+ justify-content: flex-start;
+ align-items: center;
+ flex-wrap: wrap;
+ gap: 20px;
+ }
+ header h1 { font-size:35px; }
+ nav ul {
+ list-style: none;
+ margin: 0;
+ padding: 0;
+ display: flex;
+ flex-wrap: wrap;
+ gap: 10px;
+ }
+ nav {
+ margin-left: auto;
+ }
+ nav li { position:relative; }
+ nav a{
+ display:block;
+ padding:15px 20px;
+ color:inherit;
+ text-decoration:none;
+ font-weight:600;
+ cursor:pointer;
+ transition:background .2s;
+ }
+ nav a:hover{ background:rgba(255,255,255,.15); }
+ nav ul ul{
+ display:none;
+ position:absolute;
+ top:100%; left:0;
+ background:var(--clr-primary);
+ min-width:180px;
+ z-index:999;
+ }
+ nav li:hover>ul{ display:block; }
+ nav ul ul a{ padding:10px 20px; }
+ .carousel {
+ width: 100%;
+ height: 400px;
+ }
+ .carousel-inner { height: 100%; }
+ .carousel-item { height: 100%; }
+ .carousel-item img {
+ width: 100%;
+ height: 100%;
+ object-fit: cover;
+ }
+ .content{ display:none; max-width:1200px; margin:auto; padding:40px 20px; }
+ .content.active{ display:block; }
+ .content h2{ font-size:26px; color:var(--clr-primary); margin-bottom:10px; }
+ .content hr{ border:none; border-top:2px solid #ccc; margin-bottom:30px; }
+ .content p{ font-size:18px; margin-bottom:20px; }
+ .sub-heading {
+ font-size: 14px;
+ font-weight: 400;
+ margin-top: 4px;
+ margin-bottom: 10px;
+ color: #ddd;
+ letter-spacing: 0.5px;
+ }
+ .grid{
+ display:grid;
+ grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+ gap:30px;
+ justify-items:center;
+ }
+ .question-form {
+ max-width: 600px;
+ margin: 0 auto;
+ display: flex;
+ flex-direction: column;
+ gap: 20px;
+ }
+ .question-form label {
+ font-weight: 600;
+ color: #6f4e37;
+ }
+ .question-form input,
+ .question-form textarea {
+ padding: 12px;
+ border: 1px solid #ccc;
+ border-radius: 6px;
+ font-size: 16px;
+ resize: vertical;
+ }
+ .question-form button {
+ background-color: #6f4e37;
+ color: white;
+ border: none;
+ padding: 12px 20px;
+ font-size: 16px;
+ border-radius: 6px;
+ cursor: pointer;
+ transition: background 0.2s;
+ }
+ .question-form button:hover {
+ background-color: #004c8a;
+ }
+ .card {
+ background: #f9f9f9;
+ border-radius: 16px;
+ padding: 30px 20px;
+ width: 280px;
+ text-align: center;
+ box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+ transition: transform 0.3s ease;
+ }
+ .card:hover {
+ transform: translateY(-6px);
+ }
+ .card h3 {
+ font-size: 18px;
+ color: #00274d;
+ margin-bottom: 10px;
+ }
+ .card p {
+ color: #444;
+ font-size: 15px;
+ line-height: 1.5;
+ }
+ .card-details{ display:none; margin-top:15px; font-size:15px; color:#444; text-align:left; }
+ .card.active .card-details{ display:block; }
+ .contact-icon {
+ width: 50px;
+ height: 50px;
+ background: #cf9a22;
+ color: white;
+ font-size: 24px;
+ border-radius: 50%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin: 0 auto 20px;
+ }
+ .back-btn{
+ display:inline-block; margin-top:20px; background:var(--clr-primary);
+ color:#fff; padding:10px 15px; border-radius:6px; text-decoration:none;
+ cursor:pointer; transition:background .2s;
+ }
+ .back-btn:hover{ background:#004c8a; }
+ .logo-area {
+ display: flex;
+ align-items: center;
+ justify-content: flex-start;
+ gap: 16px;
+ flex: 1;
+ text-align: left;
+ }
+ .logo-img {
+ width: 64px;
+ height: 64px;
+ object-fit: contain;
+ border-radius: 50%;
+ border: 2px solid var(--clr-accent);
+ background-color: white;
+ }
+ .logo-area div { margin-left: 10px; }
+ .logo-area h1 {
+ font-size: 32px;
+ font-weight: bold;
+ margin: 0;
+ color: white;
+ }
+ .sub-heading {
+ font-size: 14px;
+ color: #ddd;
+ margin-top: 4px;
+ letter-spacing: 0.5px;
+ }
+ footer{ background:var(--clr-primary); color:#fff; text-align:center; padding:30px 20px; margin-top:40px; }
+ @media(max-width:700px){
+ header{ padding:15px 20px; }
+ nav a{ padding:12px 15px; }
+ .carousel{ height:260px; }
+ .content h2{ font-size:22px; }
+ .content p { font-size:16px; }
+ }
+ .alanlar {
+ padding: 60px 20px;
+ background-color: #fff;
+ }
+ .alanlar-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+ gap: 20px;
+ max-width: 1200px;
+ margin: auto;
+ }
+ .alan-kutu {
+ background: #fff;
+ border-radius: 12px;
+ padding: 25px 20px;
+ text-align: center;
+ box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+ transition: none;
+ cursor: pointer;
+ }
+ .alan-kutu h3 {
+ font-size: 18px;
+ color: #00274d;
+ margin-bottom: 8px;
+ }
+ .alan-kutu p {
+ font-size: 15px;
+ color: #555;
+ }
+ .alan-icon {
+ font-size: 28px;
+ color: var(--clr-primary);
+ margin-bottom: 12px;
+ display: inline-block;
+ }
+ </style>
+</head>
+<body>
+<header>
+ <div class="logo-area">
+ <img src="images/logo.png" alt="Güner Hukuk Logo" class="logo-img">
+ <div>
+ <h1>GÜNER HUKUK</h1>
+ <p class="sub-heading">Arabuluculuk ve Danışmanlık</p>
+ </div>
+ <nav>
+ <ul>
+ <li><a onclick="showSection('home')">Ana Sayfa</a></li>
+ <li>
+ <a href="#">Hakkımızda</a>
+ <ul>
+ <li><a onclick="showSection('vizyon')">Vizyonumuz</a></li>
+ </ul>
+ </li>
+ <li><a onclick="showSection('faaliyetler')">Faaliyet Alanları</a></li>
+ <li><a onclick="showSection('iletisim')">İletişim</a></li>
+ <li><a onclick="showSection('soru')">Bize Soru Sorun</a></li>
+ </ul>
+ </nav>
+ </div>
+</header>
+
+
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+ <div class="carousel-indicators">
+ <button type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+ <button type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide-to="1" aria-label="Slide 2"></button>
+ <button type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide-to="2" aria-label="Slide 3"></button>
+ </div>
+ <div class="carousel-inner">
+ <div class="carousel-item active">
+ <img src="images/adalet1.jpg" class="d-block w-100" alt="Eşitlik için hukuk, hukuk için adalet.">
+ </div>
+ <div class="carousel-item">
+ <img src="images/adalet2.jpg" class="d-block w-100" alt="Kahverengi hukuk.">
+ </div>
+ <div class="carousel-item">
+ <img src="images/tokmak.jpg" class="d-block w-100" alt="Hukuk, toplumun temel taşıdır.">
+ </div>
+ </div>
+ <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide="prev">
+ <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+ <span class="visually-hidden">Önceki</span>
+ </button>
+ <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide="next">
+ <span class="carousel-control-next-icon" aria-hidden="true"></span>
+ <span class="visually-hidden">Sonraki</span>
+ </button>
+</div>
+
+
+<div class="content active" id="home">
+ <h2>Ana Sayfa</h2>
+ <p>Güner Hukuk, müvekkillerine adaletin en hızlı, en doğru ve etkin şekilde sağlanması amacıyla faaliyet gösteren, deneyimli ve dinamik bir hukuk bürosudur. Alanında uzman avukat kadromuzla; ticaret hukuku, iş hukuku, aile hukuku, ceza hukuku ve daha birçok hukuk dalında kapsamlı çözümler sunuyoruz.
+    Misyonumuz, hukuki sorunlarınızda yanınızda olarak, haklarınızı korumak ve en iyi sonucu elde etmek için özveriyle çalışmaktır. Güven, şeffaflık ve etik değerler temelinde hareket ederek, müvekkillerimizle uzun vadeli işbirlikleri kurmayı hedefliyoruz.
+    Güner Hukuk olarak; karmaşık hukuki süreçleri anlaşılır kılar, her adımda sizi bilgilendirir ve stratejik çözümler geliştiririz. Siz sadece işinize odaklanırken, hukuki yükünüzü omuzlarımıza alıyoruz.</p>
+ <section class="alanlar">
+ <h2 style="text-align:center; margin-bottom: 40px;">Faaliyet Alanlarımız</h2>
+ <div class="alanlar-grid">
+ <div class="alan-kutu" onclick="showSection('ceza')">
+ <i class="fa-solid fa-gavel alan-icon"></i>
+ <h3>Ceza Hukuku</h3>
+ <p>Ceza davaları ve savunma süreçleri</p>
+ </div>
+ <div class="alan-kutu" onclick="showSection('aile')">
+ <i class="fa-solid fa-people-roof alan-icon"></i>
+ <h3>Aile Hukuku</h3>
+ <p>Boşanma, velayet ve aile içi davalar</p>
+ </div>
+ <div class="alan-kutu" onclick="showSection('iş')">
+ <i class="fa-solid fa-briefcase alan-icon"></i>
+ <h3>İş Hukuku</h3>
+ <p>İşçi-işveren uyuşmazlıkları</p>
+ </div>
+ <div class="alan-kutu" onclick="showSection('gayrimenkul')">
+ <i class="fa-solid fa-house alan-icon"></i>
+ <h3>Gayrimenkul Hukuku</h3>
+ <p>Tapu, kira ve imar işlemleri</p>
+ </div>
+ <div class="alan-kutu" onclick="showSection('idare')">
+ <i class="fa-solid fa-landmark alan-icon"></i>
+ <h3>İdare Hukuku</h3>
+ <p>İptal ve tam yargı davaları</p>
+ </div>
+ <div class="alan-kutu" onclick="showSection('tüketici')">
+ <i class="fa-solid fa-cart-shopping alan-icon"></i>
+ <h3>Tüketici Hukuku</h3>
+ <p>Cayma hakkı, ayıplı mal/hizmet</p>
+ </div>
+ <div class="alan-kutu" onclick="showSection('borçlar')">
+ <i class="fa-solid fa-file-contract alan-icon"></i>
+ <h3>Borçlar Hukuku</h3>
+ <p>Sözleşmeler ve tazminat talepleri</p>
+ </div>
+ <div class="alan-kutu" onclick="showSection('miras')">
+ <i class="fa-solid fa-scroll alan-icon"></i>
+ <h3>Miras Hukuku</h3>
+ <p>Vasiyet, paylaşım ve reddi miras</p>
+ </div>
+ </div>
+ </section>
+</div>
+
+
+<div class="content" id="vizyon">
+ <h2>Vizyonumuz</h2>
+ <p>Adaletin ve hukukun üstünlüğünü temel ilke edinerek, müvekkillerimize sadece bugünün değil, yarının da ihtiyaçlarına cevap verecek yenilikçi, güvenilir ve etkili hukuk hizmetleri sunmayı hedefliyoruz.</p>
+ <p>Güner Hukuk Bürosu olarak vizyonumuz; yerel ve uluslararası düzeyde saygınlığıyla tanınan, etik değerlerden ödün vermeyen, müvekkil memnuniyetini daima ön planda tutan öncü bir hukuk danışmanı olmaktır.</p>
+ <p>Topluma ve hukuka karşı sorumluluğumuzun bilinciyle, her alanda çözüm odaklı, çağdaş ve sürdürülebilir bir hukuk anlayışını temsil ediyoruz.</p>
+</div>
+
+
+<div class="content" id="faaliyetler">
+ <h2>Faaliyet Alanlarımız</h2>
+ <hr>
+ <div class="grid">
+ <div class="card" onclick="showSection('ceza')">
+ <i class="fa-solid fa-gavel alan-icon"></i>
+ <h3>Ceza Hukuku</h3>
+ <p>Ceza davaları ve savunma süreçleri</p>
+ </div>
+ <div class="card" onclick="showSection('aile')">
+ <i class="fa-solid fa-people-roof alan-icon"></i>
+ <h3>Aile Hukuku</h3>
+ <p>Boşanma, velayet ve aile içi davalar</p>
+ </div>
+ <div class="card" onclick="showSection('iş')">
+ <i class="fa-solid fa-briefcase alan-icon"></i>
+ <h3>İş Hukuku</h3>
+ <p>İşçi-işveren uyuşmazlıkları</p>
+ </div>
+ <div class="card" onclick="showSection('gayrimenkul')">
+ <i class="fa-solid fa-house alan-icon"></i>
+ <h3>Gayrimenkul Hukuku</h3>
+ <p>Tapu, kira ve imar işlemleri</p>
+ </div>
+ <div class="card" onclick="showSection('idare')">
+ <i class="fa-solid fa-landmark alan-icon"></i>
+ <h3>İdare Hukuku</h3>
+ <p>İptal ve tam yargı davaları</p>
+ </div>
+ <div class="card" onclick="showSection('tüketici')">
+ <i class="fa-solid fa-cart-shopping alan-icon"></i>
+ <h3>Tüketici Hukuku</h3>
+ <p>Cayma hakkı, ayıplı mal/hizmet</p>
+ </div>
+ <div class="card" onclick="showSection('borçlar')">
+ <i class="fa-solid fa-file-contract alan-icon"></i>
+ <h3>Borçlar Hukuku</h3>
+ <p>Sözleşmeler ve tazminat talepleri</p>
+ </div>
+ <div class="card" onclick="showSection('miras')">
+ <i class="fa-solid fa-scroll alan-icon"></i>
+ <h3>Miras Hukuku</h3>
+ <p>Vasiyet, paylaşım ve reddi miras</p>
+ </div>
+ </div>
+</div>
+
+
+<div class="content" id="ceza">
+ <h2>Ceza Hukuku</h2>
+ <p>Ceza hukuku, toplum düzenini bozan fiillere karşı devletin uyguladığı yaptırımları konu alır. Cinayet, dolandırıcılık, hırsızlık gibi suçlar bu alanın kapsamına girer. Hukuk büromuz, hem mağdur hem de sanık açısından adil yargılanma hakkını gözeterek savunma ve temsil hizmeti sunmaktadır.</p>
+ <div class="back-btn" onclick="showSection('faaliyetler')">← Geri</div>
+</div>
+<div class="content" id="aile">
+ <h2>Aile Hukuku</h2>
+ <p>Evlilik, boşanma, velayet, nafaka ve mal paylaşımı gibi konuları düzenleyen aile hukuku, bireylerin en özel alanlarına temas eder. Büromuz, aile içi anlaşmazlıklarda tarafların menfaatlerini koruyan ve çocukların yüksek yararını esas alan bir yaklaşımı benimser.</p>
+ <div class="back-btn" onclick="showSection('faaliyetler')">← Geri</div>
+</div>
+<div class="content" id="iş">
+ <h2>İş ve Sosyal Güvenlik Hukuku</h2>
+ <p>İşveren ve çalışan arasındaki hak ve yükümlülükleri belirleyen bu alan, iş akdi, tazminat, işe iade ve SGK uyuşmazlıklarını kapsar. Hukuk büromuz, işçilerin haklarının korunması ve işverenlerin mevzuata uygun hareket etmesi adına danışmanlık ve dava hizmetleri vermektedir.</p>
+ <div class="back-btn" onclick="showSection('faaliyetler')">← Geri</div>
+</div>
+<div class="content" id="gayrimenkul">
+ <h2>Gayrimenkul ve İmar Hukuku</h2>
+ <p>Tapu işlemleri, kira sözleşmeleri, kamulaştırma ve imar planlarına itiraz gibi konular bu alanın kapsamına girer. Büromuz, müvekkillerin mülkiyet haklarını korumaya yönelik dava ve danışmanlık hizmeti verir.</p>
+ <div class="back-btn" onclick="showSection('faaliyetler')">← Geri</div>
+</div>
+<div class="content" id="idare">
+ <h2>İdare Hukuku</h2>
+ <p>Kamu kurumlarıyla bireyler arasında doğan uyuşmazlıklarda, iptal davaları, tam yargı davaları ve disiplin işlemleri gibi alanlarda temsil sağlanır. Büromuz, idari işlemlere karşı etkili bir hukuki mücadele sunar.</p>
+ <div class="back-btn" onclick="showSection('faaliyetler')">← Geri</div>
+</div>
+<div class="content" id="tüketici">
+ <h2>Tüketici Hukuku</h2>
+ <p>Ayıplı mal veya hizmet, garanti kapsamı, cayma hakkı gibi konular tüketicinin korunmasına yöneliktir. Tüketici olarak yaşadığınız sorunlarda yanınızda olarak haklarınızı aramanızda destek sağlıyoruz.</p>
+ <div class="back-btn" onclick="showSection('faaliyetler')">← Geri</div>
+</div>
+<div class="content" id="borçlar">
+ <h2>Borçlar Hukuku</h2>
+ <p>Sözleşmelerden doğan borçlar, tazminat talepleri, haksız fiil ve sebepsiz zenginleşme gibi konuları kapsar. Borç ilişkilerinde tarafların haklarının korunması adına kapsamlı danışmanlık sunmaktayız.</p>
+ <div class="back-btn" onclick="showSection('faaliyetler')">← Geri</div>
+</div>
+<div class="content" id="miras">
+ <h2>Miras Hukuku</h2>
+ <p>Vasiyetname, miras paylaşımı, mirasın reddi gibi süreçler bu hukuk dalı kapsamındadır. Miras hukukunda duygusal zorlukların yanı sıra hukuki karmaşalar yaşanabilir. Büromuz, süreci şeffaf ve güvenli biçimde yürütür.</p>
+ <div class="back-btn" onclick="showSection('faaliyetler')">← Geri</div>
+</div>
+
+
+
+
+
+<div class="content" id="soru">
+ <h2>Bize Soru Sorun</h2>
+ <hr>
+ <form action="https://formspree.io/f/mvgrvpoy" method="POST" class="question-form">
+ <label for="ad">Adınız Soyadınız</label>
+ <input type="text" name="ad" id="ad" required>
+ <label for="email">E-Mail Adresiniz</label>
+ <input type="email" name="email" id="email" required>
+ <label for="mesaj">Sorunuz / Mesajınız</label>
+ <textarea name="mesaj" id="mesaj" rows="5" required></textarea>
+ <button type="submit">Gönder</button>
+ </form>
+</div>
+
+
+<footer>
+ <p>&copy; 2025 Güner Hukuk | Tüm Hakları Saklıdır</p>
+ <nav>
+ <ul style="display: flex; gap: 20px; justify-content: center; padding: 10px 0; list-style: none;">
+ <li><a onclick="showSection('home')">Ana Sayfa</a></li>
+ <li><a onclick="showSection('vizyon')">Vizyonumuz</a></li>
+ <li><a onclick="showSection('faaliyetler')">Faaliyetler</a></li>
+ <li><a onclick="showSection('iletisim')">İletişim</a></li>
+ <li><a onclick="showSection('soru')">Bize Soru Sorun</a></li>
+ </ul>
+ </nav>
+</footer>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script>
+ function showSection(id) {
+ document.querySelectorAll('.content').forEach(s => s.classList.remove('active'));
+ const section = document.getElementById(id);
+ if (section) section.classList.add('active');
+ const carousel = document.getElementById("carouselExampleSlidesOnly");
+ if (carousel) carousel.style.display = (id === 'home') ? 'block' : 'none';
+ window.scrollTo({ top: 0, behavior: 'smooth' });
+ }
+ document.addEventListener("DOMContentLoaded", () => {
+ showSection('home');
+ });
+</script>
+</body>
+</html>
